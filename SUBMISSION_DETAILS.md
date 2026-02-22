@@ -40,7 +40,8 @@ MinuteZero features a "Premium Emergency" aesthetic—dark mode for high contras
 - **Live Agents**: Core category. Real-time voice/vision interaction.
 - **Creative Storyteller**: Using Gemini to narrate and guide through complex, high-pressure human stories.
 
-## 🔜 What's Next
-- **Wearable Integration**: Bringing MinuteZero to AR glasses for hands-free emergency assistance.
-- **Local Language Support**: Automatic translation for non-English speakers in global crises.
-- **Direct EMS Handoff**: Streaming site data directly to arriving paramedics.
+## 🌍 Live Deployment
+Experience MinuteZero live at: **[https://minutezero.vercel.app/](https://minutezero.vercel.app/)**
+
+---
+Build with ❤️ for the Gemini Live Agent Challenge.

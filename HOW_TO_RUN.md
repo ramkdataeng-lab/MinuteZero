@@ -1,6 +1,6 @@
 # 🏥 MinuteZero: Execution Guide
 
-Follow these steps to get the Gemini Live Agent up and running.
+Follow these steps to get the Gemini Live Agent up and running, or try it immediately at **[https://minutezero.vercel.app/](https://minutezero.vercel.app/)**.
 
 ## 1. Prerequisites
 - **LiveKit Cloud**: Sign up for a free project at [cloud.livekit.io](https://cloud.livekit.io).
