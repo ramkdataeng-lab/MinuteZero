@@ -31,6 +31,7 @@ graph TD
 MinuteZero features a "Premium Emergency" aesthetic—dark mode for high contrast, vibrant "Life Red" accents for visibility, and fluid glassmorphic components. It uses micro-animations and audio visualizers to provide constant feedback that the "Agent is watching and listening."
 
 ## 🌟 Key Features
+- **One-Tap Rapid Protocols**: Instant categorization for "Heavy Bleeding", "No Respiration", etc., skipping the intake phase for mid-protocol guidance.
 - **Visual Wound Assessment**: "I see the bleeding on the left arm. Apply pressure exactly where I'm highlighting on your screen."
 - **CPR Rhythm Coach**: Real-time audio-visual beat matching for chest compressions.
 - **Panic Reduction Voice**: Calm, directive speech synthesis designed to lower user cortisol levels.

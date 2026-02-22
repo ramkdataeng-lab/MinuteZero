@@ -5,6 +5,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const room = searchParams.get("room");
     const identity = searchParams.get("identity");
+    const emergency = searchParams.get("emergency");
 
     if (!room || !identity) {
         return NextResponse.json({ error: "Missing room or identity" }, { status: 400 });
@@ -20,6 +21,7 @@ export async function GET(request: Request) {
 
     const at = new AccessToken(apiKey, apiSecret, {
         identity: identity,
+        metadata: emergency || undefined,
     });
 
     at.addGrant({ roomJoin: true, room: room, canPublish: true, canSubscribe: true });

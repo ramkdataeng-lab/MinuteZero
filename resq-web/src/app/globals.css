@@ -3,7 +3,8 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
-  --accent: #ff3b30; /* Medical Red */
+  --accent: #ff3b30;
+  /* Medical Red */
   --accent-soft: rgba(255, 59, 48, 0.1);
   --glass: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
@@ -42,9 +43,11 @@ body {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
   }
+
   70% {
     box-shadow: 0 0 0 15px rgba(255, 59, 48, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
   }
@@ -54,4 +57,14 @@ body {
   background: linear-gradient(135deg, #fff 0%, #888 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes scan {
+  from {
+    top: 0%;
+  }
+
+  to {
+    top: 100%;
+  }
 }

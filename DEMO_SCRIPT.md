@@ -5,10 +5,10 @@
 - **Narration**: "In a medical emergency, the biggest killer isn't the injury—it's the Panic Gap. Those 10 minutes while you wait for an ambulance where you don't know what to do. Traditional help is too slow. Telehealth has a queue. You need someone who can see and help, right now."
 
 ## 🕒 Phase 2: The Solution (0:45 - 1:15)
-- **Visual**: Show the MinuteZero UI. The user taps the "Pulse" button.
-- **Action**: The agent connects instantly. 
-- **Agent**: "MinuteZero connected. I am watching. What is the emergency?"
-- **Narration**: "Meet MinuteZero. Powered by Gemini 1.5 Pro Multimodal Live API, it provides zero-latency guidance during the Golden Minute."
+- **Visual**: Show the MinuteZero UI. The user sees the "Rapid Response Protocols" (Heavy Bleeding, No Respiration).
+- **Action**: User taps the "Heavy Bleeding" button. The agent connects and reacts immediately to the button context.
+- **Agent**: "MinuteZero connected. I understand there is a heavy bleeding emergency. Keep the camera focused on the wound. Start applying firm pressure now."
+- **Narration**: "Meet MinuteZero. Powered by Gemini 1.5 Pro Multimodal Live API, it provides zero-latency guidance during the Golden Minute. With one-tap protocols, the AI knows the situation before you even say a word."
 
 ## 🕒 Phase 3: The "Magic" Moment (1:15 - 2:30)
 - **Visual**: Split screen. One side is the User Camera (showing a mock wound or a CPR mannequin). The other is the Agent's audio waveform.

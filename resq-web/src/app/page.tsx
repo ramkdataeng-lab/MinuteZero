@@ -12,17 +12,19 @@ import {
 } from "@livekit/components-react";
 import { Track } from "livekit-client";
 import "@livekit/components-styles";
-import { Mic, Video, PhoneOff, Activity, ShieldCheck, Zap } from "lucide-react";
+import { Mic, Video, PhoneOff, Activity, ShieldCheck, Zap, Droplet, HeartPulse, Wind, Flame } from "lucide-react";
 
 export default function Home() {
   const [isConnected, setIsConnected] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [roomName, setRoomName] = useState("emergency-room-1");
+  const [initialEmergency, setInitialEmergency] = useState<string | null>(null);
 
-  const startSession = async () => {
+  const startSession = async (emergency: string | null = null) => {
     const identity = `user-${Math.floor(Math.random() * 10000)}`;
+    setInitialEmergency(emergency);
     try {
-      const resp = await fetch(`/api/token?room=${roomName}&identity=${identity}`);
+      const resp = await fetch(`/api/token?room=${roomName}&identity=${identity}&emergency=${emergency || ""}`);
       const data = await resp.json();
       setToken(data.token);
       setIsConnected(true);
@@ -56,18 +58,18 @@ export default function Home() {
 
       <div className="relative w-full max-w-6xl z-10 flex flex-col items-center mt-12">
         {!isConnected ? (
-          <div className="flex flex-col items-center space-y-8">
+          <div className="flex flex-col items-center space-y-8 w-full">
             {/* Hero Logo centerpiece */}
-            <div className="relative group cursor-pointer" onClick={startSession}>
+            <div className="relative group cursor-pointer" onClick={() => startSession()}>
               <div className="absolute -inset-1 bg-gradient-to-r from-[#ff3b30] to-yellow-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl transition-transform hover:scale-[1.02]">
                 <Image
                   src="/FInal_logo/Log_2.png"
                   alt="MinuteZero The Golden Minute"
-                  width={500}
-                  height={500}
+                  width={400}
+                  height={400}
                   priority
-                  className="w-full max-w-[400px] md:max-w-[500px]"
+                  className="w-full max-w-[300px] md:max-w-[400px]"
                 />
               </div>
 
@@ -77,7 +79,39 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="text-center space-y-4 pt-8">
+            {/* Quick Emergency Select - Clicking these skips the 'panic' and goes straight to protocol */}
+            <div className="w-full max-w-3xl pt-12">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-red-600/50" />
+                <span className="text-[10px] uppercase font-black tracking-[0.3em] text-red-500 whitespace-nowrap">Rapid Response Protocols</span>
+                <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-red-600/50" />
+              </div>
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <QuickActionButton
+                  icon={<Droplet className="w-5 h-5" />}
+                  label="Heavy Bleeding"
+                  onClick={() => startSession("Heavy Bleeding")}
+                />
+                <QuickActionButton
+                  icon={<HeartPulse className="w-5 h-5" />}
+                  label="No Respiration"
+                  onClick={() => startSession("No Respiration")}
+                />
+                <QuickActionButton
+                  icon={<Wind className="w-5 h-5" />}
+                  label="Choking"
+                  onClick={() => startSession("Choking")}
+                />
+                <QuickActionButton
+                  icon={<Flame className="w-5 h-5" />}
+                  label="Severe Burn"
+                  onClick={() => startSession("Severe Burn")}
+                />
+              </div>
+            </div>
+
+            <div className="text-center space-y-4 pt-4">
               <p className="text-zinc-400 text-lg md:text-xl max-w-xl mx-auto font-medium">
                 Closing the panic gap with real-time AI First Response.
               </p>
@@ -91,7 +125,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="w-full flex flex-col items-center">
-            <div className="w-full max-w-4xl h-[600px] glass overflow-hidden relative">
+            <div className="w-full max-w-4xl h-[600px] glass overflow-hidden relative border border-white/10 shadow-2xl rounded-3xl">
               <LiveKitRoom
                 video={true}
                 audio={true}
@@ -103,12 +137,12 @@ export default function Home() {
                 <div className="absolute inset-0 flex flex-col">
                   {/* Active Session UI */}
                   <div className="flex-1 relative bg-zinc-950">
-                    <ActiveSessionContent />
+                    <ActiveSessionContent initialEmergency={initialEmergency} />
                   </div>
 
                   {/* Controls */}
                   <div className="h-24 bg-black/80 backdrop-blur-xl border-t border-white/5 p-6 flex items-center justify-center gap-8">
-                    <button onClick={() => setIsConnected(false)} className="px-10 py-3 bg-[#ff3b30] text-white font-black rounded-full hover:bg-red-600 transition-colors uppercase tracking-[0.2em] text-[10px] flex items-center gap-3">
+                    <button onClick={() => setIsConnected(false)} className="px-10 py-3 bg-[#ff3b30] text-white font-black rounded-full hover:bg-red-600 transition-colors uppercase tracking-[0.2em] text-[10px] flex items-center gap-3 shadow-[0_0_20px_rgba(255,59,48,0.3)] hover:scale-105 transition-transform">
                       <PhoneOff className="w-4 h-4" /> End Emergency Call
                     </button>
                   </div>
@@ -132,6 +166,22 @@ export default function Home() {
   );
 }
 
+function QuickActionButton({ icon, label, onClick }: { icon: React.ReactNode, label: string, onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="glass flex flex-col items-center justify-center p-6 gap-3 group hover:border-red-500/50 hover:bg-white/5 transition-all active:scale-95"
+    >
+      <div className="text-zinc-500 group-hover:text-red-500 transition-colors group-hover:scale-110 duration-300">
+        {icon}
+      </div>
+      <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors">
+        {label}
+      </span>
+    </button>
+  );
+}
+
 function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (
     <div className="glass p-6 space-y-3 hover:bg-white/5 transition-colors group">
@@ -142,20 +192,20 @@ function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: stri
   );
 }
 
-function ActiveSessionContent() {
+function ActiveSessionContent({ initialEmergency }: { initialEmergency: string | null }) {
   const tracks = useTracks([Track.Source.Camera, Track.Source.Microphone]);
 
   return (
     <div className="h-full w-full flex items-center justify-center overflow-hidden">
       {/* Logo Watermark in Background */}
-      <div className="absolute inset-0 opacity-10 flex items-center justify-center grayscale pointer-events-none">
+      <div className="absolute inset-0 opacity-5 flex items-center justify-center grayscale pointer-events-none">
         <Image src="/FInal_logo/Log_2.png" alt="Watermark" width={600} height={600} />
       </div>
 
       {/* Agent Visualizer */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-64 h-64 rounded-full border border-[#ff3b30]/20 flex items-center justify-center">
-          <div className="w-48 h-48 rounded-full border border-[#ff3b30]/40 flex items-center justify-center animate-pulse">
+        <div className="w-64 h-64 rounded-full border border-[#ff3b30]/10 flex items-center justify-center">
+          <div className="w-48 h-48 rounded-full border border-[#ff3b30]/20 flex items-center justify-center animate-[pulse_3s_infinite]">
             <div className="w-32 h-32 rounded-full border-2 border-[#ff3b30] flex items-center justify-center">
               <div className="w-4 h-4 bg-[#ff3b30] rounded-full shadow-[0_0_20px_#ff3b30]" />
             </div>
@@ -164,11 +214,22 @@ function ActiveSessionContent() {
       </div>
 
       {/* UI Overlay */}
-      <div className="absolute top-8 left-8 space-y-2">
+      <div className="absolute top-8 left-8 space-y-4">
         <div className="px-3 py-1 bg-red-600/20 border border-red-500/50 text-red-500 rounded text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
           Live Multimodal Feed
         </div>
+
+        {initialEmergency && (
+          <div className="p-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl space-y-1 animate-in slide-in-from-left duration-500">
+            <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Active Protocol</div>
+            <div className="text-white font-black text-lg uppercase tracking-tight flex items-center gap-2">
+              <Activity className="w-4 h-4 text-red-500" />
+              {initialEmergency}
+            </div>
+          </div>
+        )}
+
         <div className="text-zinc-500 font-mono text-[10px] uppercase tracking-tighter">
           Receiving sensor data...
         </div>
@@ -177,6 +238,11 @@ function ActiveSessionContent() {
       <div className="absolute top-8 right-8 text-right">
         <div className="text-white font-black text-2xl tracking-tighter italic">MZ AGENT 01</div>
         <div className="text-[#ff3b30] font-bold text-xs uppercase tracking-widest uppercase italic">Connected</div>
+      </div>
+
+      {/* Visual Feedback of "Scanning" */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-[2px] bg-red-500/20 animate-[scan_4s_linear_infinite]" />
       </div>
     </div>
   );

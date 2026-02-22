@@ -24,6 +24,9 @@ async def entrypoint(ctx: JobContext):
     # Participant connects - wait for the user
     participant = await ctx.wait_for_participant()
     logger.info(f"Starting MinuteZero for participant: {participant.identity}")
+    
+    emergency_type = participant.metadata
+    logger.info(f"Emergency Type: {emergency_type}")
 
     # Use the new RealtimeModel from livekit.plugins.google
     model = realtime.RealtimeModel(
@@ -51,9 +54,15 @@ Keep responses brief. Be the calm in the storm.
     session = AgentSession(llm=model)
     
     # Start the session in the room
-    # This replaces the old multimodal.MultimodalAgent.start() logic
     await session.start(agent, room=ctx.room)
     logger.info("MinuteZero Agent active and monitoring feed.")
+
+    # If a specific emergency was selected, trigger an immediate response
+    if emergency_type and emergency_type != "null" and emergency_type != "":
+        logger.info(f"Triggering rapid response for: {emergency_type}")
+        session.generate_reply(
+            instructions=f"The user has urgently reported: {emergency_type}. Immediately acknowledge this emergency and provide the FIRST critical step of the protocol."
+        )
 
     # Keep the agent running until disconnect
     await ctx.wait_for_disconnect()
