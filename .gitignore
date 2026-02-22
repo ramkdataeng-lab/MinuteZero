@@ -1,0 +1,7 @@
+resq-agent/.env
+resq-agent/__pycache__/
+resq-agent/*.py[cod]
+resq-web/.env*
+resq-web/node_modules/
+resq-web/.next/
+.vercel
