@@ -1,34 +1,44 @@
-# MinuteZero Demo Video Script (4-Minute Target)
+# 🏥 How to Demo MinuteZero
 
-## 🕒 Phase 1: The Problem (0:00 - 0:45)
-- **Visual**: Background b-roll of someone in distress (hands shaking, trying to call 911).
-- **Narration**: "In a medical emergency, the biggest killer isn't the injury—it's the Panic Gap. Those 10 minutes while you wait for an ambulance where you don't know what to do. Traditional help is too slow. Telehealth has a queue. You need someone who can see and help, right now."
+MinuteZero is designed to be a high-impact, zero-latency medical AI demo. Follow this script to showcase the multimodal power of Gemini 1.5 Pro.
 
-## 🕒 Phase 2: The Solution (0:45 - 1:15)
-- **Visual**: Show the MinuteZero UI. The user sees the "Rapid Response Protocols" (Heavy Bleeding, No Respiration).
-- **Action**: User taps the "Heavy Bleeding" button. The agent connects and reacts immediately to the button context.
-- **Agent**: "MinuteZero connected. I understand there is a heavy bleeding emergency. Keep the camera focused on the wound. Start applying firm pressure now."
-- **Narration**: "Meet MinuteZero. Powered by Gemini 1.5 Pro Multimodal Live API, it provides zero-latency guidance during the Golden Minute. With one-tap protocols, the AI knows the situation before you even say a word."
+## 🛠️ Step 1: Preparation
+1.  **Backend Check**: Ensure your local agent is running (`python agent.py dev`).
+2.  **Visuals**: Have a "patient" (friend, mannequin, or even just your own arm/leg) ready. For a "Heavy Bleeding" demo, a red marker or mock wound works great.
+3.  **Environment**: Silent room is best for voice interaction, but Gemini handles noise well.
 
-## 🕒 Phase 3: The "Magic" Moment (1:15 - 2:30)
-- **Visual**: Split screen. One side is the User Camera (showing a mock wound or a CPR mannequin). The other is the Agent's audio waveform.
-- **Demo Sequence**:
-    1. **User**: "He's bleeding from his leg!"
-    2. **Agent (Vision)**: "I see the laceration on the left thigh. Apply firm pressure. I'm highlighting the spot on your screen." (Note: Mention this as a future AR feature if not implemented).
-    3. **Action**: User starts CPR.
-    4. **Agent (Audio/Vision Sync)**: "Good rhythm. Stay with my count. One... two... three... four..." (Agent's voice matches the user's action).
+## 🎬 The Demo Walkthrough
 
-## 🕒 Phase 4: Technical Depth (2:30 - 3:30)
-- **Visual**: Architecture diagram and snippets of `agent.py`.
-- **Narration**: "Under the hood, we use LiveKit for ultra-low latency WebRTC streaming. We process interleaved audio and video tokens directly through Gemini 1.5 Pro's multimodal live window, allowing for sub-200ms response times."
+### 1. The Opening (0:00 - 0:30)
+- **Visual**: Landing page on a phone or laptop.
+- **Action**: Point to the "MinuteZero" logo.
+- **Script**: "This is MinuteZero. In a medical emergency, you're usually waiting 10 minutes for an ambulance. Those 10 minutes—the Panic Gap—are when lives are lost. We use Gemini 1.5 Pro to provide a first responder who can see, hear, and help *instantly*."
 
-## 🕒 Phase 5: The Impact (3:30 - 4:00)
-- **Visual**: The user looking relieved as the "Ambulance Arriving" indicator appears.
-- **Narration**: "MinuteZero doesn't replace doctors. It eliminates panic. It saves the minutes that save lives. Built for the Gemini Live Agent Challenge."
+### 2. The Rapid Response (0:30 - 1:00)
+- **Action**: Tap the **"Heavy Bleeding"** Rapid Protocol button.
+- **Visual**: Watch the "Connecting..." loader transition into the active HUD.
+- **Wait**: The AI agent will speak FIRST.
+- **Agent**: "MinuteZero connected. I understand there is a heavy bleeding emergency. Keep your camera on the wound. Start applying firm pressure now."
+- **Script**: "Notice I didn't have to explain the situation. The one-tap protocol informed the AI immediately, saving critical seconds."
+
+### 3. The Multimodal "Vision" (1:00 - 2:00) - THE CLIMAX
+- **Action**: Point your camera at your "wound".
+- **User**: "I'm applying pressure, what next?"
+- **Agent**: (Gemini will see the camera feed) "I see where you're holding. You need more leverage. Use a cloth if you have one and wrap it tightly above the wound."
+- **Script**: "Gemini isn't just listening; it's *watching*. It understands the physical environment and provides spatially-aware instructions."
+
+### 4. The Exit (2:00 - 2:30)
+- **Action**: Tap "End Call".
+- **Script**: "MinuteZero turns every bystander into a lifesaver. No queues, no panic, just the Golden Minute handled by AI."
 
 ---
 
-## 💡 Filming Tips:
-1. **Lighting**: Ensure the "injury" area is well-lit so Gemini's vision capability is clear in the recording.
-2. **Audio**: Use a good mic for the Agent's voice; it should sound calm and synthesized but authoritative.
-3. **Pacing**: Don't rush. Let the agent's response time shine—that low latency is your winning feature.
+## 💡 Troubleshooting the Demo
+- **"Nothing happens when I click"**: 
+    - Open Chrome DevTools (`F12` -> Console). Look for "Failed to generate token".
+    - Likely cause: `LIVEKIT_URL` or `API_KEY` is missing in your environment.
+- **Agent doesn't speak**:
+    - Ensure your backend `python agent.py dev` shows `registered worker`.
+    - Make sure you aren't muted.
+- **Vision is slow**:
+    - Ensure you have good upload speed. Multimodal feeds require consistent bandwidth.
