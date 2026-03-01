@@ -15,7 +15,7 @@ In medical emergencies, the **"Panic Gap"**—the time between the incident and 
 
 ## 🛠️ Technical Architecture
 
-![MinuteZero Architecture Diagram](minutezero_architecture.png)
+![MinuteZero Architecture Diagram](docs/assets/architecture_diagram.png)
 
 ### **The Tech Stack**
 - **LLM**: Gemini 1.5 Pro (Multimodal Live API)
@@ -58,6 +58,17 @@ By pre-routing the patient to specific trauma bays and providing pre-intake diag
 ## 🌍 Live Demonstration
 - **Demo Video**: [MinuteZero_Final_Demo.mp4](file:///c:/Projects/AA/Hackathon/gemini_LiveAgent/resq-agent/MinuteZero_Final_Demo.mp4)
 - **Live Deployment**: [https://minutezero.vercel.app/](https://minutezero.vercel.app/)
+
+---
+
+## 📸 Project Media
+Check out the core vision and impact of MinuteZero through our high-resolution assets:
+- **Project Thumbnail**: [submission_thumbnail.png](docs/assets/submission_thumbnail.png)
+- **Technical Architecture**: [architecture_diagram.png](docs/assets/architecture_diagram.png)
+- **Clinical Intelligence HUD**: [slide_1_vision.png](docs/assets/slide_1_vision.png) / [slide_2_diagnostic.png](docs/assets/slide_2_diagnostic.png)
+- **Low-Latency Architecture**: [slide_3_tech.png](docs/assets/slide_3_tech.png)
+- **Impact Analysis**: [slide_4_impact.png](docs/assets/slide_4_impact.png)
+- **App Previews**: [Bleeding Scenario](docs/assets/app_preview_bleeding.png) | [Choking Scenario](docs/assets/app_preview_choking.png)
 
 ---
 
