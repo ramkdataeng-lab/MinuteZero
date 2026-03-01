@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinuteZero - Written Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --accent: #ff3b30;
+            --accent-glow: rgba(255, 59, 48, 0.4);
+            --bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #e0e0e0;
+            --text-muted: #888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding-bottom: 100px;
+        }
+
+        /* Ambient Glows */
+        .glow {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0.15;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        .glow-1 {
+            top: -300px;
+            left: -300px;
+        }
+
+        .glow-2 {
+            bottom: -300px;
+            right: -300px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        header {
+            margin-bottom: 120px;
+            text-align: left;
+        }
+
+        .category {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--accent);
+            font-weight: 900;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 6rem;
+            line-height: 0.85;
+            font-weight: 900;
+            letter-spacing: -5px;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-left: 4px solid var(--accent);
+            padding-left: 30px;
+            margin-top: 40px;
+            max-width: 700px;
+        }
+
+        section {
+            margin-bottom: 120px;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: #fff;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 50px 0 20px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 1.15rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 50px;
+            backdrop-filter: blur(30px);
+            margin-top: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 59, 48, 0.3);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 59, 48, 0.15) 0%, rgba(255, 59, 48, 0.03) 100%);
+            border-left: 6px solid var(--accent);
+            padding: 50px;
+            border-radius: 0 32px 32px 0;
+            margin: 60px 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-cols: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 32px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+            color: var(--text-muted);
+        }
+
+        .arch-viz {
+            width: 100%;
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin: 60px 0;
+        }
+
+        .arch-viz img {
+            width: 100%;
+            display: block;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding-top: 60px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        strong {
+            color: #fff;
+        }
+
+        .pulse {
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 20px;
+            box-shadow: 0 0 15px var(--accent);
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 15px rgba(255, 59, 48, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .container {
+                padding: 60px 25px;
+            }
+
+            .stat-number {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <div class="container">
+        <header>
+            <span class="category">Official Hackathon Proposal 2026</span>
+            <h1>MINUTE<span>ZERO</span></h1>
+            <div class="tagline">Surviving the "Panic Gap" with Multimodal Intelligence</div>
+        </header>
+
+        <section id="summary">
+            <h2><span class="pulse"></span>Executive Summary</h2>
+            <div class="highlight-box">
+                <p>In critical medical emergencies, the transition from trauma to treatment is plagued by a lethal void:
+                    <strong>The Panic Gap</strong>. This is the interval between an incident and the arrival of
+                    professional help, characterized by bystander fear, confusion, and delayed communication with
+                    hospital staff.</p>
+                <p><strong>MinuteZero (MZ)</strong> is a zero-latency, multimodal AI agent that transforms any
+                    smartphone into a world-class ER specialist. By leveraging the <strong>Gemini 1.5 Pro Multimodal
+                        Live API</strong>, it sees, hears, and acts with authoritative guidance to save lives in the
+                    "Golden Minute."</p>
+            </div>
+        </section>
+
+        <section id="problem">
+            <h2>👁️ The Problem: The Lethal Reach</h2>
+            <div class="card">
+                <p>Current emergency response relies on voice-only components, where untrained bystanders are forced to
+                    describe complex medical situations under extreme stress. This creates:</p>
+                <ul>
+                    <li><strong>Latency of Description:</strong> Vital seconds lost explaining visual trauma.</li>
+                    <li><strong>Bystander Paralysis:</strong> Fear preventing critical interventions like CPR.</li>
+                    <li><strong>The Intake Log-jam:</strong> Hospitals receive victims with zero advance data.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="solution">
+            <h2>🏥 The Innovation: Active Intervention</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100MS</div>
+                    <div class="stat-label">Feedback Latency</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">14 MIN</div>
+                    <div class="stat-label">Intake Time Saved</div>
+                </div>
+            </div>
+
+            <h3>Multimodal Real-Time Vision</h3>
+            <p>MinuteZero processes interleaved tokens to identify specific clinical markers. It recognizes arterial
+                bleeds from venous ones and detects pediatric airway obstructions through the lens—providing
+                <strong>visually-aware</strong> instructions in real-time.</p>
+
+            <h3>The Golden Minute Extension</h3>
+            <p>By generating a <strong>Clinical Briefing</strong> during the intervention and syncing it via the
+                <strong>Google Drive API</strong>, we ensure that specialized trauma bays and blood inventory are
+                prepped before the patient arrives.</p>
+        </section>
+
+        <section id="architecture">
+            <h2>🛠️ Technical Engine</h2>
+            <div class="arch-viz">
+                <img src="assets/architecture_diagram.png" alt="MinuteZero Technical Architecture">
+            </div>
+            <div class="card">
+                <ul>
+                    <li><strong>Core Engine:</strong> Gemini 1.5 Pro (Multimodal Live API) for interleaved reasoning.
+                    </li>
+                    <li><strong>Streaming:</strong> LiveKit Cloud for WebRTC orchestration.</li>
+                    <li><strong>Tools:</strong> Google Search for facility routing & Google Drive for data persistence.
+                    </li>
+                    <li><strong>Deployment:</strong> Google Cloud Run & Vercel.</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            Built by Ramkumar G. for the Gemini Live Agent Challenge 2026
+        </footer>
+    </div>
+</body>
+
+</html>
