@@ -57,7 +57,40 @@ By pre-routing the patient to specific trauma bays and providing pre-intake diag
 
 ## 🌍 Live Demonstration
 - **Demo Video**: [MinuteZero_Final_Demo.mp4](file:///c:/Projects/AA/Hackathon/gemini_LiveAgent/resq-agent/MinuteZero_Final_Demo.mp4)
-- **Live Deployment**: [https://minutezero.vercel.app/](https://minutezero.vercel.app/) (Demo URL)
+- **Live Deployment**: [https://minutezero.vercel.app/](https://minutezero.vercel.app/)
+
+---
+
+## 🚀 Setup & Reproducibility Guide
+To run **MinuteZero** locally or on your own Cloud instance, follow these steps:
+
+### **1. Prerequisites**
+- Node.js 18+ & npm
+- Python 3.10+
+- [LiveKit Cloud](https://cloud.livekit.io) (Free)
+- Google AI Studio API Key (with Gemini 1.5 Pro access)
+
+### **2. Frontend Setup**
+```bash
+cd resq-web
+npm install
+# Create .env.local and add your LIVEKIT_API_KEY, SECRET, and URL
+npm run dev
+```
+
+### **3. Backend Agent Setup**
+```bash
+cd resq-agent
+pip install -r requirements.txt
+# Create .env and add your GOOGLE_API_KEY, LIVEKIT_URL, API_KEY, and SECRET
+python agent.py dev
+```
+
+### **4. GCP Deployment (Bonus)**
+A deployment script for **Google Cloud Run** is provided in the root:
+```bash
+sh deploy_cloud_run.sh
+```
 
 ---
 Build for the **Gemini Live Agent Challenge** | February 2026
