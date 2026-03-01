@@ -15,20 +15,7 @@ In medical emergencies, the **"Panic Gap"**—the time between the incident and 
 
 ## 🛠️ Technical Architecture
 
-```mermaid
-graph TD
-    User([Responder / User]) <-->|WebRTC A/V Stream| LK[LiveKit Cloud]
-    LK <-->|Interleaved Tokens| Gemini[Gemini 1.5 Pro Live API]
-    
-    subgraph "Intelligent Core"
-        Gemini <-->|Function Calling| Search[Active Medical Search]
-        Gemini -->|Clinical Logic| Prompt[AHA/Red Cross Protocols]
-    end
-
-    Web[Next.js Frontend] -->|Auth & Token| LK
-    Web -->|Final Briefing| Drive[Google Drive API]
-    Search --- Hospital[Level 1 Trauma Centers / PICUs]
-```
+![MinuteZero Architecture Diagram](minutezero_architecture.png)
 
 ### **The Tech Stack**
 - **LLM**: Gemini 1.5 Pro (Multimodal Live API)
