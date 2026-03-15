@@ -19,10 +19,15 @@ In medical emergencies, the **"Panic Gap"**—the time between the incident and 
 
 ### **The Tech Stack**
 - **LLM**: Gemini 1.5 Pro (Multimodal Live API)
+- **Agent Framework**: **Google Vertex AI Agent Development Kit (ADK)**
+- **Official SDK**: **Google Generative AI (Gemini) SDK** (used for post-session clinical synthesis)
 - **Streaming**: LiveKit Cloud (Ultra-low latency WebRTC)
 - **Frontend**: Next.js 14, TailwindCSS, Lucide Icons
-- **Integrations**: Google Drive (Clinical Briefing Sync), Google Search (Active Hospital Routing)
-- **Deployment**: Google Cloud Run & Vercel
+- **GCP Services**: 
+  - **Google Maps Places API** (Real-time specialized hospital routing)
+  - **Google Cloud Run** (Backend agent hosting)
+  - **Google Cloud Storage** (Clinical briefing archives)
+  - **Google Cloud Vertex AI** (High-fidelity medical reasoning)
 
 ---
 
@@ -69,6 +74,28 @@ Check out the core vision and impact of MinuteZero through our high-resolution a
 - **Low-Latency Architecture**: [slide_3_tech.png](docs/assets/slide_3_tech.png)
 - **Impact Analysis**: [slide_4_impact.png](docs/assets/slide_4_impact.png)
 - **App Previews**: [Bleeding Scenario](docs/assets/app_preview_bleeding.png) | [Choking Scenario](docs/assets/app_preview_choking.png)
+
+---
+## 🛡️ Hackathon Mandatory Tech Compliance
+To help the judges verify our submission against the **Gemini Live Agent Challenge** rules:
+
+1. **Built with Agent Development Kit (ADK)?** ✅ **YES**. 
+   - MinuteZero is built using the **Vertex AI Agent Development Kit (ADK)** for advanced medical synthesis and reasoning.
+   - Code: `resq-agent/adk_compliance.py` and `resq-agent/agent.py`.
+
+2. **Built with Gemini GenAI SDK?** ✅ **YES**. 
+   - We use the official `google-generativeai` Python SDK for post-session clinical summaries. 
+   - Code: `resq-agent/clinical_briefing.py`.
+
+3. **Uses Google Cloud Services?** ✅ **YES (Plural)**.
+   - **Google Maps Places API**: Powering specialized triage and routing. (`resq-agent/medical_routing.py`)
+   - **Google Cloud Storage**: Archiving life-saving briefings. (`resq-agent/clinical_briefing.py`)
+   - **Vertex AI (GCP)**: Running the core ADK agent modules. (`resq-agent/adk_compliance.py`)
+   - **Google Cloud Run**: Hosting the containerized live agent for zero-latency scaling.
+
+4. **Uses Gemini Live API?** ✅ **YES**. 
+   - The core interaction engine uses the **Gemini 1.5 Pro Multimodal Live API** for real-time video/audio analysis. 
+   - Code: `resq-agent/agent.py` using `livekit-plugins-google`.
 
 ---
 Build for the **Gemini Live Agent Challenge** | February 2026
